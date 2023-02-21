@@ -6,8 +6,15 @@ void main() => runApp(MaterialApp(
       home: Home(),
     ));
 
-class Home extends StatelessWidget {
-  @override //used to say the build fuction would override instead of what was inherited from the stateless widgets
+class Home extends StatefulWidget {
+  @override
+  State<Home> createState() => _Test();
+}
+
+class _Test extends State<Home> {
+  int ninjaLevel = 0;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[900],
@@ -15,6 +22,15 @@ class Home extends StatelessWidget {
         title: Text('Ninja ID Card'),
         centerTitle: true,
         backgroundColor: Colors.grey[850],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            ninjaLevel += 1;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.amberAccent[200],
       ),
       body: Padding(
         padding: EdgeInsets.all(40.0),
@@ -50,7 +66,7 @@ class Home extends StatelessWidget {
               style: TextStyle(color: Colors.grey[400]),
             ),
             SizedBox(height: 10.0),
-            Text('8',
+            Text('$ninjaLevel',
                 style: TextStyle(
                     color: Colors.amberAccent[200],
                     fontSize: 20.0,
@@ -73,8 +89,8 @@ class Home extends StatelessWidget {
         ),
       ),
     );
+    ;
   }
 }
-
 // stateless widgets, the state of the widgets cannot change over time
 // stateful, can change over time.
